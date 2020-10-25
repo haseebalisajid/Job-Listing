@@ -577,7 +577,7 @@ const fetchCustomJobs = async (jobSearch) => {
     </DialogActions>
 </Dialog>
 ```
-so these all the code snippets which are shared with you the understand the working of project more clearly.
+so these are all the code snippets which are shared with you to understand the working of project more clearly.
 
 ## Hosting a React.js App via [Netlify][netlify]
 ⚡ Start getting reviews on your projects from experts and your friends and what's the best way other than hosting it live! 
