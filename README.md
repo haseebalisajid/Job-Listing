@@ -146,7 +146,7 @@ var firebaseConfig = {
   - The structure will be something like this:
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/43790152/97117518-15fc8980-1726-11eb-89bb-ebda796fcabd.JPG">
+<img src="https://user-images.githubusercontent.com/43790152/97117518-15fc8980-1726-11eb-89bb-ebda796fcabd.JPG" heigth=600 width=800>
 </p>
 <p align="center" style="font-style: italic">.env file structure</p>
 
@@ -158,7 +158,7 @@ var firebaseConfig = {
 <h2 align="center" style="font-size: 36px; font-weight: 500">Post a Job</h2>
 
 <p align="center">
-<img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119526-a50f9e80-1732-11eb-82e0-6bde96832231.gif">
+<img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119526-a50f9e80-1732-11eb-82e0-6bde96832231.gif" heigth=600 width=800>
 </p>
 
 <br>
@@ -400,7 +400,7 @@ const fetchJobs = async () => {
 <h2 align="center" style=" font-size: 36px; font-weight: 500">Filteration</h2>
 
 <p align="center">
-<img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119755-1439c280-1734-11eb-9f8b-3c895fc21aeb.gif">
+<img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119755-1439c280-1734-11eb-9f8b-3c895fc21aeb.gif" heigth=600 width=800>
 </p>
 
 <p align="center" style=" font-style: italic">Applying Filter to various Jobs</p>
@@ -496,7 +496,7 @@ const fetchCustomJobs = async (jobSearch) => {
 <h2 align="center" style=" font-size: 36px; font-weight: 500">Job Details</h2>
 
 <p align="center">
-<img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119772-3d5a5300-1734-11eb-85cd-2d4b43d8f719.gif">
+<img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119772-3d5a5300-1734-11eb-85cd-2d4b43d8f719.gif" heigth=600 width=800>
 </p>
 
 <p align="center" style=" font-style: italic">Details of a Job</p>
