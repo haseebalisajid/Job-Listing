@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Job Listing - React.js App
 
 - Test [Live][jobFinderHost] Demo!
-- 
+
 ## 📜 Overview
 
 In this tutorial, we will be exploring a **Job Listing App**. Developed with React.js, alongside Firebase and Material UI touch. The key features that we will be exploring:
