@@ -3,6 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Job Listing - React.js App
 
 - Test [Live][jobFinderHost] Demo!
+<br>
 
 ## 📜 Overview
 
@@ -23,7 +24,7 @@ In this tutorial, we will be exploring a **Job Listing App**. Developed with Rea
 
 <h2 style="text-align:center; font-size: 42px; font-weight: 500">👨‍💻 Job Finding</h2>
 
-<p style="text-align:center">
+<p align="center">
 <img src="https://user-images.githubusercontent.com/43790152/97087217-e411f700-1641-11eb-906d-64e86112e0e9.png"  height=550>
 </p>
 
@@ -145,19 +146,19 @@ var firebaseConfig = {
   - Create an **.env** in the root of your project
   - The structure will be something like this:
 
-<p style="text-align:center">
+<p align="center">
 <img src="https://user-images.githubusercontent.com/43790152/97117518-15fc8980-1726-11eb-89bb-ebda796fcabd.JPG">
 </p>
+<p align="center" style="font-style: italic">.env file structure</p>
 
 - Your `.gitignore` file must contain `.env`
 
-<p style="text-align:center; font-style: italic">.env file structure</p>
 
 ## Posting a Job in Firebase
 
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Post a Job</h2>
 
-<p style="text-align:center">
+<p align="center">
 <img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119526-a50f9e80-1732-11eb-82e0-6bde96832231.gif">
 </p>
 
@@ -288,11 +289,11 @@ const PostJob = async (jobDetails) => {
 
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Getting Jobs from Firestore</h2>
 
-<p style="text-align:center">
+<p align="center">
 <img src="https://user-images.githubusercontent.com/43790152/97116170-3ecc5100-171d-11eb-8a56-e8f026cac264.JPG" heigth=600 width=800>
 </p>
 
-<p style="text-align:center; font-style: italic">Getting data from Firestore and showing in the cards</p>
+<p align="center" style="font-style: italic">Getting data from Firestore and showing in the cards</p>
 
 <br>
 
@@ -397,13 +398,13 @@ const fetchJobs = async () => {
 ```
 
 ## Filteration Feature
-<h2 style="text-align:center; font-size: 36px; font-weight: 500">Filteration</h2>
+<h2 align="center" style=" font-size: 36px; font-weight: 500">Filteration</h2>
 
-<p style="text-align:center">
+<p align="center">
 <img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119755-1439c280-1734-11eb-9f8b-3c895fc21aeb.gif">
 </p>
 
-<p style="text-align:center; font-style: italic">Applying Filter to various Jobs</p>
+<p align="center" style=" font-style: italic">Applying Filter to various Jobs</p>
 
 <br>
 
@@ -493,13 +494,13 @@ const fetchCustomJobs = async (jobSearch) => {
 ```
 
 ## Check Job Details
-<h2 style="text-align:center; font-size: 36px; font-weight: 500">Job Details</h2>
+<h2 align="center" style=" font-size: 36px; font-weight: 500">Job Details</h2>
 
-<p style="text-align:center">
+<p align="center">
 <img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119772-3d5a5300-1734-11eb-85cd-2d4b43d8f719.gif">
 </p>
 
-<p style="text-align:center; font-style: italic">Details of a Job</p>
+<p align="center" style=" font-style: italic">Details of a Job</p>
 
 <br>
 
@@ -577,8 +578,10 @@ const fetchCustomJobs = async (jobSearch) => {
     </DialogActions>
 </Dialog>
 ```
+so these all the code snippets which are shared with you the understand the working of project more clearly.
+
 ## Hosting a React.js App via [Netlify][netlify]
-Start getting reviews on your projects from experts and your friends and what's the best way other than hosting it live! ⚡
+⚡ Start getting reviews on your projects from experts and your friends and what's the best way other than hosting it live! 
 
 👉 Read the [documentation][netlifyHosting] & Good Luck!
 
