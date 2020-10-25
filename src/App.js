@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { Box,Grid,ThemeProvider,Button, CircularProgress} from "@material-ui/core";
+import { Box,Grid,ThemeProvider,Button, Typography,CircularProgress} from "@material-ui/core";
 import theme from './theme/theme';
 import Header from "./components/Header"
 import SearchBar from "./components/SearchBar"
@@ -101,6 +101,9 @@ export default () => {
             )}
         </Grid>
       </Grid>
+    </Box>
+    <Box display="flex" justifyContent="center" mt={3} mb={2}>
+      <Typography variant="caption">&copy; 2020 CB.All Rights Reserved.</Typography>
     </Box>
   </ThemeProvider>
 };
