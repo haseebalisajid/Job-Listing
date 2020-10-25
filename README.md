@@ -3,7 +3,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Job Listing - React.js App
 
 - Test [Live][jobFinderHost] Demo!
-<br>
 
 ## 📜 Overview
 
@@ -37,7 +36,7 @@ Let's take a peak at our project structure for better understanding
 <p style="text-align:center;">
 <img style="padding:8px" src="https://user-images.githubusercontent.com/43790152/97117211-0419e700-1724-11eb-8f50-047e3af08ce7.JPG" height=400>
 
-<img style="padding:8px" src="https://user-images.githubusercontent.com/43790152/97117320-b9e53580-1724-11eb-915d-6c65a841a142.JPG" width=400 height=400>
+<img style="padding:8px" src="https://user-images.githubusercontent.com/43790152/97117320-b9e53580-1724-11eb-915d-6c65a841a142.JPG" width=500 height=400>
 </p>
 <p style="text-align:center; font-style: italic">Overall Project Structure</p>
 
@@ -145,7 +144,7 @@ var firebaseConfig = {
   - Create an **.env** in the root of your project
   - The structure will be something like this:
 
-<p style="text-align:center">
+<p style="margin:0 auto">
 <img src="https://user-images.githubusercontent.com/43790152/97117518-15fc8980-1726-11eb-89bb-ebda796fcabd.JPG">
 </p>
 
@@ -157,13 +156,13 @@ var firebaseConfig = {
 
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Post a Job</h2>
 
-<p style="text-align:center">
+<p style="margin:0 auto">
 <img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119526-a50f9e80-1732-11eb-82e0-6bde96832231.gif">
 </p>
 
 <br>
 
-<p style="text-align:center; font-style: italic">Post a Job Form</p>
+<p style="margin:0 auto">Post a Job Form</p>
 
 #### Pre-requisites
 *Setup your App with Cloud Firestore by following the official [Documentation][firestore_docs]*
@@ -288,7 +287,7 @@ const PostJob = async (jobDetails) => {
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Getting Jobs from Firestore</h2>
 
 <p style="text-align:center">
-<img src="https://user-images.githubusercontent.com/43790152/97116170-3ecc5100-171d-11eb-8a56-e8f026cac264.JPG" height=500>
+<img src="https://user-images.githubusercontent.com/43790152/97116170-3ecc5100-171d-11eb-8a56-e8f026cac264.JPG" heigth=600 width=800>
 </p>
 
 <p style="text-align:center; font-style: italic">Getting data from Firestore and showing in the cards</p>
@@ -399,7 +398,7 @@ const fetchJobs = async () => {
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Filteration</h2>
 
 <p style="text-align:center">
-<img src="https://user-images.githubusercontent.com/32738765/97119755-1439c280-1734-11eb-9f8b-3c895fc21aeb.gif" height=500>
+<img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119755-1439c280-1734-11eb-9f8b-3c895fc21aeb.gif">
 </p>
 
 <p style="text-align:center; font-style: italic">Applying Filter to various Jobs</p>
@@ -495,7 +494,7 @@ const fetchCustomJobs = async (jobSearch) => {
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Job Details</h2>
 
 <p style="text-align:center">
-<img src="https://user-images.githubusercontent.com/32738765/97119772-3d5a5300-1734-11eb-85cd-2d4b43d8f719.gif" height=500>
+<img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119772-3d5a5300-1734-11eb-85cd-2d4b43d8f719.gif">
 </p>
 
 <p style="text-align:center; font-style: italic">Details of a Job</p>
