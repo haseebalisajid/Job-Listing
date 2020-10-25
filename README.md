@@ -3,6 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Job Listing - React.js App
 
 - Test [Live][jobFinderHost] Demo!
+<br>
 
 ## 📜 Overview
 
@@ -91,21 +92,56 @@ We are using Hooks to managing the local state of our app, which includes very m
 ## How!
 - `useState()` Hook for *initializing* the *Local State* in `main` component `App.js`
 
-<script src="https://gist.github.com/haseebalisajid/6527b33e191b2e7f9cc21b5e075ad386.js"></script>
+```javascript
+  //State to save data of jobs from firebase
+  const [jobs,setJobs]=useState([]); 
 
+  //state for the loader data.
+  const [loading,setLoading]=useState(true); 
+
+  //State for the custom Search or Filteration
+  const [customSearch,setCustomSearch]=useState(false); 
+
+  //State for the Apply for a  Job Modal
+  const [openModal,setOpenModal]=useState(false); 
+  
+   //State for the View Job Modal
+  const [viewJob,setViewJob]=useState({});
+```
 - `useEffect()` Hook
   
 The idea to implement `useEffect` hook is to execute code that needs happens during lifecycle of the component instead of on specific user interactions or `DOM` events.
 
-<script src="https://gist.github.com/haseebalisajid/48d0147ffa32ec3bb84250888bc199b1.js"></script>
+```javascript
+useEffect(() => {
+    fetchJobs();        // We'll take a look into `fetchJobs()` in few moments
+  },[]);
+```
 
 ## Setup a Firebase config & .ENV file
 
 -`Config.js`
 - We are accessing the credentials via `.ENV` file.
 
-<script src="https://gist.github.com/haseebalisajid/becb074033a89ca9bc7a19c2a7b48b04.js"></script>
+```javascript
+import app from 'firebase/app';
+import 'firebase/firestore';
 
+
+var firebaseConfig = {
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    databaseURL: process.env.REACT_APP_databaseURL,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
+  };
+
+  // Initialize Firebase
+  const firebase=app.initialize
+
+```
 - How we setup `.ENV` file
   - Create an **.env** in the root of your project
   - The structure will be something like this:
@@ -136,45 +172,119 @@ The idea to implement `useEffect` hook is to execute code that needs happens dur
 ### Steps:    
 *Steps are being done in `View Job Model` component*
 - Declaring an `Object`
-
-<script src="https://gist.github.com/haseebalisajid/0d33ec737139f484f0946313732f460d.js"></script>
-
-- Initalizing the State
-
-<script src="https://gist.github.com/haseebalisajid/4736fc506648a21d679cbea272bd81d5.js"></script>
-
-- Handling the change in **Forms**
-
-<script src="https://gist.github.com/haseebalisajid/37ad7baa6d0c0988caa9a9fda84faadf.js"></script>
-
-- Adding or Removing **Skills**
-
-<script src="https://gist.github.com/haseebalisajid/ff31ebac70094667a7c2996724a0183b.js"></script>
-
-- Handling the change on `Submit`
-
-<script src="https://gist.github.com/haseebalisajid/7cba9a1f74ae9185bc2505117012ef4a.js"></script>
-
-`closeModal()` is actually:
-
-<script src="https://gist.github.com/haseebalisajid/b6db60909a4f00cb71ccb80bfce71660.js"></script>
-
-Passing the function from `main` component as a `prop` in which we use the state `openModal` for opening or closing the modal.
+```javascript
+const initState = {
+    title: "",
+    type: "Full Time",
+    companyName: "",
+    companyUrl: "",
+    location: "Remote",
+    link: "",
+    description: "",
+    skills: [],
+}
 ```
+- Initalizing the State
+```javascript
+// State for the Job Details
+const [jobDetails,setJobDetails] = useState(initState);
+
+// State for the loader of the data
+const [loading,setLoading]=useState(false);
+
+```
+- Handling the change in **Forms**
+```javascript
+    const handleChange = (e) => {
+        e.persist();
+        setJobDetails(oldState => ({
+            ...oldState,
+            [e.target.name]:e.target.value
+        }));
+    }
+```
+- Handling the change in **Skills** Selection
+```javascript
+    const addRemoveSkill = (skill) => {
+        jobDetails.skills.includes(skill)
+
+        //Removing Skill
+        ? setJobDetails(oldState => ({
+            ...oldState,
+            skills:oldState.skills.filter(s=> s!==skill)
+        }))
+        
+        //Adding Skill
+        :setJobDetails(oldState => ({
+            ...oldState,
+            skills:oldState.skills.concat(skill)
+        }))
+    }
+```
+- Handling the change on `Submit`
+```javascript
+    const handleSubmit = async () => {
+        for (const field in jobDetails) {
+            if(typeof jobDetails[field] === "string" && !jobDetails[field] ) {
+                alert("Fill all the Required Fileds"); 
+                return;
+            }
+        }
+        
+        if (!jobDetails.skills.length) {
+            alert("Fill all the Required Fileds");
+            return;
+        }
+         
+        setLoading(true);
+
+        // function for sending all the details to Firebase
+        await props.PostJob(jobDetails);
+        closeModal();
+    }
+```
+`closeModal()` is actually:
+```javascript
+    const closeModal = () =>{
+        setJobDetails(initState);
+        setLoading(false);
+
+        // Function from another component using props
+        props.closeJobModal();
+    }
+```
+Passing the function from `main` component as a `prop` in which we use the state `openModal` for opening or closing the modal.
+```javascript
     closeJobModal = {( ) => setOpenModal(false)}
 ```
 - `Post a Job`: Loader Working
 
 On submission of `Forms` this is how the **Loader** works in the `Post a Job` Button `onClick:`
-
-<script src="https://gist.github.com/haseebalisajid/858946e7ee0d10a6a7364aea42f5fabd.js"></script>
-
+```javascript
+    <Button 
+        onClick = {handleSubmit} 
+        variant = "contained" 
+        disableElevation 
+        color = "primary"
+        disabled = {loading}>
+        {loading ? (<CircularProgress color="secondary" size={22} />
+        ) : (   
+        "Post Job"
+        )}
+    </Button>
+```
 *Now, we have all the data which is perfectly ready to be uploaded on **Firebase***
 
 - Function for sending the data to **Firebase** (in `main` component `App.js`)
 
-<script src="https://gist.github.com/haseebalisajid/8af80fd5991345a520efdc820b83422d.js"></script>
-
+```javascript
+const PostJob = async (jobDetails) => {
+    await firestore.collection("jobs").add({
+      ...jobDetails,
+      postedOn:app.firestore.FieldValue.serverTimestamp()
+    });
+  }
+```
 ## Retrieving Data from Firestore
 
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Getting Jobs from Firestore</h2>
@@ -189,15 +299,103 @@ On submission of `Forms` this is how the **Loader** works in the `Post a Job` Bu
 
 - Function that will do the actual job of fetching the data from `cloud_firestore`
 
-<script src="https://gist.github.com/haseebalisajid/fd38ffa0c22f2f5cb8829c79968fd266.js"></script>
+```javascript
+
+const fetchJobs = async () => {
+    setCustomSearch(false);
+
+    //Setting the state of loader
+    setLoading(true);
+
+    const req = await firestore
+
+    //selection the collection from firestore
+    .collection('jobs') 
+
+    //Sorting the jobs by posting time
+    .orderBy('postedOn','desc')
+
+    //getting the data
+    .get();
+
+    //mapping on the retrieved data
+    const tempData = req.docs.map((job) => ({ 
+      ...job.data(),
+
+      //Adding the id to the data
+      id : job.id,
+
+      //setting the posted date
+      postedOn:job.data().postedOn.toDate(),
+    }));
+
+    //Push all the data to the Jobs Local State
+    setJobs(tempData);
+
+    //Setting the loader state to stop it
+    setLoading(false);
+  }
+```
 
 - Designing the Job Cards
 
-<script src="https://gist.github.com/haseebalisajid/3f47fa22f0fbfc8bb9c3afc65db71190.js"></script>
+```javascript
+<Box p={2}  >
+    <Grid container mb={2} alignItems="center">
 
+        {/* Grid Item for the Title of job and the Company Name */}
+        <Grid item xs>
+            <Typography variant="subtitle1">{props.title}</Typography>
+            <Typography className={classes.companyName} variant="subtitle1">{props.companyName}</Typography>
+        </Grid>
+
+        {/* Grid Item for displaying the Required Skill set for the job */}
+        <Grid item container xs>
+
+            {/* Mapping over the skills and show each skill in the skillChip form */}
+            {props.skills.map(skill => <Grid className={classes.skillChip}  key={skill}>
+                {skill}
+            </Grid>)}
+        </Grid>
+        <Grid item container direction="column" alignItems="flex-end" xs>
+            <Grid item>
+
+                {/* Foramt the Posted Date time in (count) Days Ago etc */}
+            <typography variant="caption">{formatDistance(Date.now(),props.postedOn)} ago | {props.type} | {props.location}</typography>
+            </Grid>
+            <Grid item>
+                <Box mt={2}>
+                    <Button onClick={props.open} variant="outlined">Check</Button> 
+                </Box>
+            </Grid>
+        </Grid>
+    </Grid>
+</Box>
+```
 - Rendering Job Card component in `main` component `App.js`
 
-<script src="https://gist.github.com/haseebalisajid/2325a981336b923969a7115d335634f5.js"></script>
+```javascript
+<Box>
+    <Grid container justify="center">
+    <Grid item xs={10}>
+
+        {
+        {/* Setting the loader */}
+        loading ? (
+            <Box display="flex" justifyContent="center">
+            <CircularProgress />
+            </Box>
+        ) : (
+
+            {/* Displaying all the jobs in jobCard */}
+            {jobs.map((job)=> (
+                <JobCard open={()=>setViewJob(job)} key={job.id} {...job} />  
+            ))}     
+        )}
+    </Grid>
+    </Grid>
+</Box>
+```
 
 ## Filteration Feature
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Filteration</h2>
@@ -212,11 +410,88 @@ On submission of `Forms` this is how the **Loader** works in the `Post a Job` Bu
 
 - Function for Filtering the data (jobs) from Firestore
 
-<script src="https://gist.github.com/haseebalisajid/64d8e3d07de3bb3681ed78ac59814fd5.js"></script>
+```javascript
+const fetchCustomJobs = async (jobSearch) => {
 
+    //Setting the Loader
+    setLoading(true);
+
+    //Setting the Custom Search
+    setCustomSearch(true);
+
+    //Fetching data from Firestore
+    const req = await firestore
+
+    //Selecting the Collection from Firestore
+    .collection('jobs')
+
+    //Sorting the Data on posted Time
+    .orderBy('postedOn','desc')
+
+    //Filtering the Data
+
+    //comparing the Working Type
+    .where("location", "==" ,jobSearch.location)
+
+    //Comparing the Job Type
+    .where("type", "==" ,jobSearch.type)
+
+    //Getting the data
+    .get();
+
+    //<apping the retrieved data
+    const tempData=req.docs.map((job) => ({ 
+      ...job.data(),
+      id : job.id,
+      postedOn:job.data().postedOn.toDate(),
+    }));
+    
+    //Set the Data in local State
+    setJobs(tempData);
+
+    //Stop the Loader
+    setLoading(false);
+  }
+```
 - Rendering the Filtered Job Cards
+```javascript
+<Box>
+    <Grid container justify="center">
+    <Grid item xs={10}>
 
-<script src="https://gist.github.com/haseebalisajid/88cc62488dd0e4e1402684bb31c945ab.js"></script>
+        {/* passing the Fetching Function  */}
+        <SearchBar fetchCustomJobs={fetchCustomJobs} />
+
+        {
+        loading ? (
+
+            //Displaying the Loader
+            <Box display="flex" justifyContent="center">
+            <CircularProgress />
+            </Box>
+        ) : (
+            <>
+
+                {/* adding the Custom Search button after filteration*/}
+            {customSearch && (   
+                <Box my={2} display="flex" justifyContent="flex-end">
+                <Button onClick={fetchJobs}>
+                    <CloseIcon size={20} />
+                    Custom Search                      
+                </Button>
+                </Box>
+            )}
+
+                {/* Mapping the Jobs */}
+            {jobs.map((job)=> (
+                <JobCard open={()=>setViewJob(job)} key={job.id} {...job} />  
+            ))}     
+            </>
+        )}
+    </Grid>
+    </Grid>
+</Box>
+```
 
 ## Check Job Details
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Job Details</h2>
@@ -230,9 +505,79 @@ On submission of `Forms` this is how the **Loader** works in the `Post a Job` Bu
 <br>
 
 - Designing the Job Details Modal
+```javascript
+<Dialog 
+    {/* passing the jobs data as prop */}
 
-<script src="https://gist.github.com/haseebalisajid/6683ae9b32c9f4eb3fc94ee86c862c30.js"></script>
+    open={!!Object.keys(props.job).length} 
+    fullWidth>
+    <DialogTitle>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+            
+            {/* Displaynig the Main heading */}
+            {props.job.title} @ {props.job.companyName}
 
+            {/* Setting the Closing button for Modal */}
+            <IconButton onClick={props.closeModal}>
+                <CloseIcon />
+            </IconButton>
+        </Box>
+    </DialogTitle>
+    <DialogContent>
+        <Box>
+            {/* Displaying all the Details about the job */}
+
+            <Box className={classes.info} display="flex">
+                <Typography variant="caption" size={20}>Posted on: </Typography>
+                <Typography variant="body2" size={20}>{props.job.postedOn && format(props.job.postedOn,"dd/MM/yyyy HH:MM")}</Typography>
+            </Box>
+            <Box className={classes.info} display="flex">
+                <Typography variant="caption">Job Type: </Typography>
+                <Typography variant="body2" size={20}>{props.job.type}</Typography>
+            </Box>
+            <Box className={classes.info} display="flex">
+                <Typography variant="caption">Work Type: </Typography>
+                <Typography variant="body2" size={20}>{props.job.location}</Typography>
+            </Box>
+            <Box className={classes.info} display="flex">
+                <Typography variant="caption">Description: </Typography>
+                <Typography variant="body2" size={20}>{props.job.description}</Typography>
+            </Box>
+            <Box className={classes.info} display="flex">
+                <Typography variant="caption">Comapny Name: </Typography>
+                <Typography variant="body2" size={20}>{props.job.companyName}</Typography>
+            </Box>
+            <Box className={classes.info} display="flex">
+                <Typography variant="caption">Comapny Website : </Typography>
+                <Typography variant="body2" size={20}>{props.job.companyUrl}</Typography>
+            </Box>
+            <Box className={classes.info} >
+                <Grid container alignItems="center">
+
+                    {/* Mapping from the Skills */}
+                    {props.job.skills && 
+                    props.job.skills.map((skill)=>(
+                        <Grid item key={skill} className={classes.skillChip}>
+                            {skill}
+                        </Grid>
+                    ))}
+                </Grid>
+            </Box>
+        </Box>
+    </DialogContent>
+    <DialogActions>
+        <Button 
+            className={classes.included}
+            variant="outlined" 
+            component="a" 
+            rel={'external'}
+            href={props.job.link} 
+            target="_blank">
+            Apply
+        </Button>
+    </DialogActions>
+</Dialog>
+```
 ## Hosting a React.js App via [Netlify][netlify]
 Start getting reviews on your projects from experts and your friends and what's the best way other than hosting it live! ⚡
 
