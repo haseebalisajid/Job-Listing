@@ -3,7 +3,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Job Listing - React.js App
 
 - Test [Live][jobFinderHost] Demo!
-<br>
 
 ## 📜 Overview
 
