@@ -1,6 +1,9 @@
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 # Job Listing - React.js App
 
 - Test [Live][jobFinderHost] Demo!
+<br>
 
 ## 📜 Overview
 
@@ -34,7 +37,7 @@ Let's take a peak at our project structure for better understanding
 <p style="text-align:center;">
 <img style="padding:8px" src="https://user-images.githubusercontent.com/43790152/97117211-0419e700-1724-11eb-8f50-047e3af08ce7.JPG" height=400>
 
-<img style="padding:8px" src="https://user-images.githubusercontent.com/43790152/97117320-b9e53580-1724-11eb-915d-6c65a841a142.JPG" height=400>
+<img style="padding:8px" src="https://user-images.githubusercontent.com/43790152/97117320-b9e53580-1724-11eb-915d-6c65a841a142.JPG" width=400 height=400>
 </p>
 <p style="text-align:center; font-style: italic">Overall Project Structure</p>
 
@@ -155,7 +158,7 @@ var firebaseConfig = {
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Post a Job</h2>
 
 <p style="text-align:center">
-<img src="https://user-images.githubusercontent.com/43790152/97087264-54b91380-1642-11eb-87c2-06e2708eaaba.png" height=500>
+<img alt="GIF" src="https://user-images.githubusercontent.com/32738765/97119526-a50f9e80-1732-11eb-82e0-6bde96832231.gif">
 </p>
 
 <br>
@@ -396,7 +399,7 @@ const fetchJobs = async () => {
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Filteration</h2>
 
 <p style="text-align:center">
-<img src="https://user-images.githubusercontent.com/43790152/97087324-aeb9d900-1642-11eb-8516-e459eeaaf2b2.png" height=500>
+<img src="https://user-images.githubusercontent.com/32738765/97119755-1439c280-1734-11eb-9f8b-3c895fc21aeb.gif" height=500>
 </p>
 
 <p style="text-align:center; font-style: italic">Applying Filter to various Jobs</p>
@@ -492,7 +495,7 @@ const fetchCustomJobs = async (jobSearch) => {
 <h2 style="text-align:center; font-size: 36px; font-weight: 500">Job Details</h2>
 
 <p style="text-align:center">
-<img src="https://user-images.githubusercontent.com/43790152/97087324-aeb9d900-1642-11eb-8516-e459eeaaf2b2.png" height=500>
+<img src="https://user-images.githubusercontent.com/32738765/97119772-3d5a5300-1734-11eb-85cd-2d4b43d8f719.gif" height=500>
 </p>
 
 <p style="text-align:center; font-style: italic">Details of a Job</p>
@@ -581,7 +584,19 @@ Start getting reviews on your projects from experts and your friends and what's 
 ## Setting up your Environmental Variables in Netlify
 👉 Read the [documentation][envDoc] here.
 
+## Author
 
+#### Haseeb Ali Sajid
+[![LinkedIn Link](https://img.shields.io/badge/Connect-Haseeb_Ali-blue.svg?logo=linkedin&longCache=true&style=social&label=Connect
+)](https://www.linkedin.com/in/haseeb-ali-720531149/)
+
+You can also follow my GitHub Profile to stay updated about my latest projects:
+
+[![GitHub Follow](https://img.shields.io/badge/Connect-C_B-blue.svg?logo=Github&longCache=true&style=social&label=Follow)](https://github.com/haseebalisajid)
+
+If you liked the repo then kindly support it by giving it a star ⭐!
+
+Copyright (c) 2020 CB
 
 [hooks]: https://reactjs.org/docs/hooks-intro.html
 [nodejs]: https://nodejs.org/en/
